@@ -2,8 +2,10 @@
 
 export class Celda{
      
+    #evento;
     constructor(x,y){
 
+        
         //paredes de cada celda
         this.walls =
         {
@@ -20,6 +22,7 @@ export class Celda{
         };
         //me interesa guardar si la celda ha sido visitada para algunas funciones
         this.visited=false;
+        this.#evento=null;
     }
 
     getVisited(){
@@ -27,6 +30,12 @@ export class Celda{
     }
     visitar(){
         this.visited=true;
+    }
+    getEvento(){
+        return this.#evento;
+    }
+    setEvento(evento){
+        this.#evento=evento;
     }
     static pintarPared(canvas,x1,y1,x2,y2){
         let ctx = canvas.getContext("2d");

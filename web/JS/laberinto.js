@@ -17,10 +17,13 @@ export class Laberinto{
             }
         }
     }
+    //devuelve una celda del laberinto situada en x e y
     getCelda(x,y){
         return this.cells[x][y];
     }
 
+    //devuelve un array de celdas adyacentes a la celda pasada por parametro que no 
+    //hayan sido visitadas por el algoritmo de generación de laberintos
     dameAdyacentesNoVisitados(celda){
         let noVisitados=new Array();
         let x=celda.position.x,y=celda.position.y;
@@ -48,6 +51,7 @@ export class Laberinto{
         return noVisitados;
     }
 
+    //selecciona una posicion aleatoria dentro del laberinto
     seleccionarPosicionInicial(){
         let posX,posY;
         posX = Math.trunc(Math.random()*this.tamanyo);
@@ -59,6 +63,7 @@ export class Laberinto{
         return posiciones;
     }
 
+    //borra las paredes que conectan las 2 celdas pasadas por parametro
     borrarMuro(actual,siguiente){
         let pos_Actual_X,pos_Actual_Y,pos_Siguiente_X,pos_Siguiente_Y;
         pos_Actual_X=actual.position.x;
@@ -91,10 +96,12 @@ export class Laberinto{
        }
 
     }
+    //selecciona una celda aleatoria dentro del array pasado por parametro
     elegirCamino(caminos){
         let indice = Math.trunc(Math.random()*caminos.length);
         return caminos[indice];
     }
+    //genera un laberinto aleatorio de forma procedural
     generarLaberinto(){
         
         let stack=new Array();
@@ -118,6 +125,7 @@ export class Laberinto{
             }    
         }
     }
+    //pinta el laberinto en un canvas
     pintarLaberinto(){
         let canvas = document.querySelector("canvas");
         for(let i=0;i<this.cells.length;i++){

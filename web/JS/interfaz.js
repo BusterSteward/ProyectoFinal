@@ -2,6 +2,8 @@
 
 export class Interfaz{
 
+    //muestra u oculta los botones para moverse en función de los muros de la celda y
+    //la direccion de la vista del jugador
     static refrescarBotones(partida){
         let laberinto=partida.getLab();
         let jugador=partida.getJugador();

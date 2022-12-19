@@ -21,6 +21,7 @@ export class Partida{
     getNivel(){return this.#nivel}
     getJugador(){return this.#jugador}
 
+    //actualiza todas las variables necesarias para pasar al siguiente laberinto
     pasarNivel(){
         this.#nivel++;
         this.#laberinto=new Laberinto(this.#nivel);
