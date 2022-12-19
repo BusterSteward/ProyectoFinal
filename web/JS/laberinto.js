@@ -1,9 +1,11 @@
 "use strict";
 import { Celda } from "./celda.js";
 
+const min=3;
 export class Laberinto{
-
+    
     constructor(tam){
+        tam=min+tam;
         this.tamanyo=tam;
         this.cells=new Array(tam);
         for(let i=0;i<tam;i++){
@@ -116,7 +118,8 @@ export class Laberinto{
             }    
         }
     }
-    pintarLaberinto(canvas){
+    pintarLaberinto(){
+        let canvas = document.querySelector("canvas");
         for(let i=0;i<this.cells.length;i++){
             for(let j=0;j<this.cells.length;j++){
                 this.cells[i][j].pintarParedes(canvas,this.cells.length);

@@ -11,23 +11,53 @@ export class Jugador{
         }
         this.direction=null;
     }
+    setLab(lab){
+        this.laberinto=lab;
+    }
+    getMiCelda(){
+        return this.laberinto.getCelda(this.position.x,this.position.y);
+    }
     mover(dir){
         switch(dir){
             case 1://UP
-                this.position.y--;
-                this.direction=1;
+                if(this.getMiCelda().walls.top){
+                    console.log("te he pillao con el carrito del helao, tramposillo");
+                }
+                else{
+                    this.position.y--;
+                    this.direction=1;
+                }
+                
                 break;
             case 2://RIGHT
-                this.position.x++;
-                this.direction=2;
+                if(this.getMiCelda().walls.right){
+                    console.log("te he pillao con el carrito del helao, tramposillo");
+                }
+                else{
+                    this.position.x++;
+                    this.direction=2;
+
+                }
                 break;
             case 3://DOWN
-                this.position.y++;
-                this.direction=3;
+                if(this.getMiCelda().walls.bottom){
+                    console.log("te he pillao con el carrito del helao, tramposillo");
+                }
+                else{
+                    this.position.y++;
+                    this.direction=3;
+
+                }
                 break;
             case 4://LEFT
-                this.position.x--;
-                this.direction=4;
+                if(this.getMiCelda().walls.left){
+                    console.log("te he pillao con el carrito del helao, tramposillo");
+                }
+                else{
+                    this.position.x--;
+                    this.direction=4;
+
+                }
                 break;
         }
         console.log("x: "+this.position.x+" y: "+this.position.y);

@@ -1,88 +1,37 @@
 "use strict";
 
-import {Jugador} from "./jugador.js";
-import{Laberinto} from "./laberinto.js";
+import { Interfaz } from "./interfaz.js";
+import { Partida } from "./partida.js";
 
-//variables globales
-var laberinto,tam=4;
-
-
-//inicio del juego
-function inicializarLaberinto(){
-    laberinto=new Laberinto(tam);
-    laberinto.generarLaberinto();
-    laberinto.pintarLaberinto(canvas);
-}
-function refrescarBotones(){
-    let celda = laberinto.getCelda(jugador.position.x,jugador.position.y)
-    switch(jugador.direction){
-        case 1:
-            document.getElementById("down").classList.add("ocultar");
-            celda.walls.top ?       document.getElementById("up").classList.add("ocultar") :
-                                    document.getElementById("up").classList.remove("ocultar");
-            celda.walls.left ?      document.getElementById("left").classList.add("ocultar") :
-                                    document.getElementById("left").classList.remove("ocultar");
-            celda.walls.right ?     document.getElementById("right").classList.add("ocultar") :
-                                    document.getElementById("right").classList.remove("ocultar");
-            break;
-        case 2:
-            document.getElementById("left").classList.add("ocultar");
-            celda.walls.top ?       document.getElementById("up").classList.add("ocultar") :
-                                    document.getElementById("up").classList.remove("ocultar");
-            celda.walls.bottom ?    document.getElementById("down").classList.add("ocultar") :
-                                    document.getElementById("down").classList.remove("ocultar");
-            celda.walls.right ?     document.getElementById("right").classList.add("ocultar") :
-                                    document.getElementById("right").classList.remove("ocultar");
-            break;
-        case 3:
-            document.getElementById("up").classList.add("ocultar");
-            celda.walls.bottom ?    document.getElementById("down").classList.add("ocultar") :
-                                    document.getElementById("down").classList.remove("ocultar");
-            celda.walls.left ?      document.getElementById("left").classList.add("ocultar") :
-                                    document.getElementById("left").classList.remove("ocultar");
-            celda.walls.right ?     document.getElementById("right").classList.add("ocultar") :
-                                    document.getElementById("right").classList.remove("ocultar");
-            break;
-        case 4:
-            document.getElementById("right").classList.add("ocultar");
-            celda.walls.top ?       document.getElementById("up").classList.add("ocultar") :
-                                    document.getElementById("up").classList.remove("ocultar");
-            celda.walls.left ?      document.getElementById("left").classList.add("ocultar") :
-                                    document.getElementById("left").classList.remove("ocultar");
-            celda.walls.bottom ?    document.getElementById("down").classList.add("ocultar") :
-                                    document.getElementById("down").classList.remove("ocultar");
-            break;
-    }
-}
+var partida;
 
 var canvas = document.createElement("canvas");
 canvas.setAttribute("width","400");
 canvas.setAttribute("height","400");
-canvas.style.border = "2px solid black";
+canvas.style.border = "1px solid blue";
 document.querySelector("main").appendChild(canvas);
 
 document.getElementById("up").addEventListener("click",()=>{
-    jugador.mover(1);
-    refrescarBotones();
+    partida.getJugador().mover(1);
+    Interfaz.refrescarBotones(partida);
 });
 document.getElementById("right").addEventListener("click",()=>{
-    jugador.mover(2);
-    refrescarBotones();
+    partida.getJugador().mover(2);
+    Interfaz.refrescarBotones(partida);
 });
 document.getElementById("down").addEventListener("click",()=>{
-    jugador.mover(3);
-    refrescarBotones();
+    partida.getJugador().mover(3);
+    Interfaz.refrescarBotones(partida);
 });
 document.getElementById("left").addEventListener("click",()=>{
-    jugador.mover(4);
-    refrescarBotones();
+    partida.getJugador().mover(4);
+    Interfaz.refrescarBotones(partida);
 });
 
 document.getElementById("girarse").addEventListener("click",()=>{
-    jugador.girarse();
-    refrescarBotones();
+    partida.getJugador().girarse();
+    Interfaz.refrescarBotones(partida);
 })
-inicializarLaberinto();
-var jugador = new Jugador(laberinto);
-jugador.seleccionarSalida(laberinto);
-refrescarBotones();
+partida = new Partida();
+
+Interfaz.refrescarBotones(partida);
