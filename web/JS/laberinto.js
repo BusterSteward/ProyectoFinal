@@ -1,10 +1,13 @@
 "use strict";
 import { Celda } from "./celda.js";
+import { Camino } from "./camino.js";
+import{Evento_Boss} from "./evento.js";
 
 const min=3;
 export class Laberinto{
     
     constructor(tam){
+        this.piso=tam;
         tam=min+tam;
         this.tamanyo=tam;
         this.cells=new Array(tam);
@@ -51,6 +54,25 @@ export class Laberinto{
         return noVisitados;
     }
 
+    dameAdyacentesConMuros(celda){
+        let adyacentes=[];
+        if(!celda.walls.top){
+            adyacentes.push(this.cells[celda.position.x][celda.position.y-1]);
+        }
+        if(!celda.walls.right){
+            adyacentes.push(this.cells[celda.position.x+1][celda.position.y]);
+
+        }
+        if(!celda.walls.bottom){
+            adyacentes.push(this.cells[celda.position.x][celda.position.y+1]);
+
+        }
+        if(!celda.walls.left){
+            adyacentes.push(this.cells[celda.position.x-1][celda.position.y]);
+
+        }
+        return adyacentes;
+    }
     //selecciona una posicion aleatoria dentro del laberinto
     seleccionarPosicionInicial(){
         let posX,posY;
@@ -124,6 +146,39 @@ export class Laberinto{
                 stack.push(actual);
             }    
         }
+    }
+    //devuelve un array con las celdas en las que puedo meter la salida del laberinto
+    dameSalidasPosibles(){
+        let salidas=[];
+        for(let i=0;i<this.tamanyo;i++){
+            for(let j=0;j<this.tamanyo;j++){
+                if(this.dameAdyacentesConMuros(this.cells[i][j]).length==1){
+                    salidas.push(this.cells[i][j]);
+                }
+            }
+        }
+        return salidas;
+    }
+    //coloca el final del laberinto a una distancia mínima de la posicion inicial, pasada por parámetro
+    introducirFinal(entrada,distancia){
+        let salidasPosibles=this.dameSalidasPosibles();
+        let caminos=new Camino(entrada,this,null);
+        salidasPosibles = Laberinto.filtrarPorDistancia(salidasPosibles,distancia,caminos);
+        let salida = salidasPosibles[Math.trunc(Math.random()*salidasPosibles.length)];
+        salida.setEvento(new Evento_Boss(this.piso));
+        console.log(salida.position);
+
+    }
+
+    static filtrarPorDistancia(salidasPosibles,distancia,caminos){
+        let nuevasSalidas=[];
+        let camino;
+        for(let i=0;i<salidasPosibles.length;i++){
+            camino=caminos.seleccionarCamino(salidasPosibles[i]);
+            if(camino.calcularDistancia()>=distancia)
+                nuevasSalidas.push(salidasPosibles[i]);
+        }
+        return nuevasSalidas;
     }
     //pinta el laberinto en un canvas
     pintarLaberinto(){

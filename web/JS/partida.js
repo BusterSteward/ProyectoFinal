@@ -15,6 +15,7 @@ export class Partida{
         this.#laberinto.pintarLaberinto();
         this.#jugador=new Jugador(this.#laberinto);
         this.#jugador.seleccionarSalida();
+        this.#laberinto.introducirFinal(this.#jugador.getMiCelda(),5);
     }
 
     getLab(){return this.#laberinto}

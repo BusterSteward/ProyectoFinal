@@ -1,12 +1,11 @@
 ﻿"use strict";
 
-export class Evento{
+class Evento{
     resuelto;
     constructor(){
         this.resuelto=false;
     }
     
-    resolver();
 }
 
 export class Evento_Boss extends Evento{

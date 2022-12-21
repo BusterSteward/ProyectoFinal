@@ -24,10 +24,6 @@ export class Celda{
         this.visited=false;
         this.#evento=null;
     }
-
-    getVisited(){
-        return this.visited;
-    }
     visitar(){
         this.visited=true;
     }
@@ -36,6 +32,9 @@ export class Celda{
     }
     setEvento(evento){
         this.#evento=evento;
+    }
+    equals(celda){
+        return this.position.x==celda.position.x&&this.position.y==celda.position.y;
     }
     static pintarPared(canvas,x1,y1,x2,y2){
         let ctx = canvas.getContext("2d");
