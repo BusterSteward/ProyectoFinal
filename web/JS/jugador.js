@@ -38,8 +38,6 @@ export class Jugador{
                 else{
                     this.position.y--;
                     this.direction=1;
-                    let nuevaCelda=this.getMiCelda();
-                    nuevaCelda.resolver();
                 }
                 
                 break;
@@ -50,9 +48,6 @@ export class Jugador{
                 else{
                     this.position.x++;
                     this.direction=2;
-                    let nuevaCelda=this.getMiCelda();
-                    nuevaCelda.resolver();
-
                 }
                 break;
             case 3://DOWN
@@ -62,9 +57,6 @@ export class Jugador{
                 else{
                     this.position.y++;
                     this.direction=3;
-                    let nuevaCelda=this.getMiCelda();
-                    nuevaCelda.resolver();
-
                 }
                 break;
             case 4://LEFT
@@ -73,12 +65,12 @@ export class Jugador{
                 }
                 else{
                     this.position.x--;
-                    this.direction=4;
-                    let nuevaCelda=this.getMiCelda();
-                    nuevaCelda.resolver();
+                    this.direction=4; 
                 }
                 break;
         }
+        let nuevaCelda=this.getMiCelda();
+        nuevaCelda.getEvento().resolver(this);
         console.log("x: "+this.position.x+" y: "+this.position.y);
         
     }

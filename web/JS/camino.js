@@ -2,16 +2,7 @@
 
 export class Camino{
 
-    /*
-    constructor(celda,lab){
-        this.padre=null;
-        this.nodo=celda;
-        let adyacentes=lab.dameAdyacentesConMuros(celda);
-        this.hijos=[];
-        adyacentes.forEach(element => {
-            this.hijos.push(new Camino(element,lab,this));
-        });
-    }*/
+    
     constructor(celda,lab,padre){
         this.padre=padre;
         this.nodo=celda;

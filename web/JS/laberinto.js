@@ -1,7 +1,7 @@
 "use strict";
 import { Celda } from "./celda.js";
 import { Camino } from "./camino.js";
-import{Evento_Boss} from "./evento.js";
+import{Evento_Boss,Evento_Pasillo,Evento_Agua,Evento_Cofre,Evento_Trampa,Evento_Altar,Evento_Enemigo,Evento_Entrada,Evento_NuevoPiso,Evento_Portal} from "./evento.js";
 
 const min=3;
 export class Laberinto{
@@ -166,10 +166,11 @@ export class Laberinto{
         salidasPosibles = Laberinto.filtrarPorDistancia(salidasPosibles,distancia,caminos);
         let salida = salidasPosibles[Math.trunc(Math.random()*salidasPosibles.length)];
         salida.setEvento(new Evento_Boss(this.piso));
-        console.log(salida.position);
+        console.log("Salida del laberinto: x: "+salida.position.x+" y: "+salida.position.y);
 
     }
-
+    //elimina del array de posiciones posibles para la salida las posiciones que estén demasiado cerca de la posicion 
+    //del jugador
     static filtrarPorDistancia(salidasPosibles,distancia,caminos){
         let nuevasSalidas=[];
         let camino;
@@ -179,6 +180,15 @@ export class Laberinto{
                 nuevasSalidas.push(salidasPosibles[i]);
         }
         return nuevasSalidas;
+    }
+    introducirEventos(){
+        for(let i=0;i<this.tamanyo;i++){
+            for(let j=0;j<this.tamanyo;j++){
+                if(this.getCelda(i,j).getEvento()==null){
+                    this.getCelda(i,j).setEvento(new Evento_Pasillo(1));
+                }
+            }
+        }
     }
     //pinta el laberinto en un canvas
     pintarLaberinto(){
