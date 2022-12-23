@@ -7,8 +7,9 @@ export class Jugador extends Personaje{
         super();
         this.laberinto=lab;
         this.vida=100;
+        this.vidaMax=100;
         
-        this.aguante=1;
+        this.aguante=0;
         this.estamina=100+(10*this.aguante);
         
         this.nivel=1;
@@ -96,11 +97,49 @@ export class Jugador extends Personaje{
         super.atacar(objetivo);
         this.estamina-=2;
     }
-    //incrementa las variables de estadisticas del personaje al subir de nivel
+    //incrementa las variables de estadisticas del personaje al subir de nivel y restablece la estamina y salud
     levelUp(){
         this.nivel++;
         this.exp=0;
-
+        let estadistica = prompt("Introduce la estadistica que quieras subir");
+        this.subirEstadistica(estadistica);
+        this.vida=this.vidaMax;
+        this.estamina=100+(10*this.aguante);
+    }
+    subirEstadistica(estadistica){
+        switch(estadistica){
+            
+            case 1:
+                //vida
+                this.vidaMax+=10;
+                
+                break;
+            case 2:
+                //aguante
+                this.aguante++;
+                break;
+            case 3:
+                //ataque
+                this.ataque++;
+                break;
+            case 4:
+                //defensa
+                this.defensa++;
+                break;
+            case 5:
+                //agilidad
+                this.agilidad++;
+                break;
+            case 6:
+                //velocidad
+                this.velocidad++;
+                break;
+            case 7:
+                //suerte
+                this.suerte++;
+                break;
+            
+        }
     }
     //incrementa la experiencia que gana el personaje
     ganarExp(xp){

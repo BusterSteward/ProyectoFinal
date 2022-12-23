@@ -2,9 +2,8 @@
 
 export class Personaje{
     constructor(){
-        this.danio=1;
         this.ataque=1;
-        this.defensa=1;
+        this.defensa=0;
         this.agilidad=20;
         this.velocidad=1;
         this.suerte=1;
