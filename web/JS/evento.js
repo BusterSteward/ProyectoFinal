@@ -1,5 +1,6 @@
 ﻿"use strict";
-
+import { Enemigo } from "./enemigo.js";
+import { partida } from "./main.js";
 class Evento{
     resuelto;
     constructor(){
@@ -26,15 +27,26 @@ export class Evento_Boss extends Evento{
 export class Evento_Enemigo extends Evento{
     constructor(nivel){
         super();
+        this.enemigo=new Enemigo(nivel);
     }
     
 
     resolver(jugador){
         if(this.resuelto){
-
+            console.log("El cuerpo de la criatura que derrotaste sigue aquí.");
         }
         else{
+            console.log("Te encuentras con un enemigo delante de ti, preparate para el combate.");
+            let resultado = this.enemigo.combate(jugador);
             this.resuelto=true;
+            if(resultado){
+                console.log("Has derrotado a tu enemigo.");
+                jugador.ganarExp(this.enemigo.recompensaExp);
+            }
+            else{
+                console.log("Te han derrotado.");
+                partida.gameOver();
+            }
         }
     }
 }

@@ -32,4 +32,7 @@ export class Partida{
         this.#jugador.setLab=this.#laberinto;
         this.#jugador.seleccionarSalida();
     }
+    gameOver(){
+        console.log("La partida ha terminado");
+    }
 }

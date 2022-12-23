@@ -3,7 +3,7 @@
 import { Interfaz } from "./interfaz.js";
 import { Partida } from "./partida.js";
 
-var partida;
+export var partida;
 
 //genero el canvas para pintar el laberinto
 var canvas = document.createElement("canvas");

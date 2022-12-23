@@ -10,10 +10,12 @@ export class Jugador{
         this.danio=1;
         this.ataque=1;
         this.defensa=1;
-        this.agilidad=1;
+        this.agilidad=20;
+        this.velocidad=1;
         this.suerte=1;
         this.nivel=1;
         this.exp=0;
+
         this.position={
             "x":-1,
             "y":-1
@@ -114,5 +116,19 @@ export class Jugador{
         this.direction = Math.trunc(Math.random()*4)+1;
         console.log(this.position);
         console.log(this.direction);
+    }
+
+    static pruebaGolpeCritico(suerte){
+        let tirada=Math.trunc(Math.random()*100)+1;
+        return tirada<=suerte;
+    }
+    static pruebaAgilidad(agilidad){
+        let tirada = Math.trunc(Math.random()*100)+1;
+        return tirada<=agilidad;
+    }
+    static pruebaVelocidad(velocidad, dificultad){
+        let tirada = Math.trunc(Math.random()*20)+1;
+        tirada+=velocidad;
+        return tirada>=dificultad;
     }
 }
