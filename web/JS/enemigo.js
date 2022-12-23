@@ -1,9 +1,10 @@
 "use strict";
 
-import { Jugador } from "./jugador.js";
+import { Personaje } from "./personaje.js";
 
-export class Enemigo{
+export class Enemigo extends Personaje{
     constructor(nivel,boss){
+        super();
         let limiteAgilidad=25;
         if(boss){
             nivel+=3;
@@ -36,78 +37,15 @@ export class Enemigo{
     }
     rondaDeAtaques(jugador){
 
-        let orden=Enemigo.pruebaVelocidadEnfrentada(jugador,this);
+        let orden=Personaje.pruebaVelocidadEnfrentada(jugador,this);
         
-        let esquiva=[],golpeCritico=[];
-        esquiva[0]=Jugador.pruebaAgilidad(orden[1].agilidad);
-        esquiva[1]=Jugador.pruebaAgilidad(orden[0].agilidad);
+        orden[0].atacar(orden[1]);
 
-        golpeCritico[0]=Jugador.pruebaGolpeCritico(orden[0].suerte);
-        golpeCritico[1]=Jugador.pruebaGolpeCritico(orden[1].suerte);
-
-        let danio;
-        let clase;
-        if(orden[0] instanceof Jugador){
-            clase="jugador";
-        }
-        else{
-            clase="enemigo";
-        }
-        if(!esquiva[0]){
-            danio=orden[0].ataque;
-            if(golpeCritico[0]){
-                danio*=2;
-                console.log("GOLPE CRÍTICO");
-            }
-            danio-=orden[1].defensa;
-            orden[1].vida-=danio;
-            
-            console.log("El "+clase+" ha recibido "+danio+" puntos de daño.");
-        }
-        else{
-            console.log("El "+clase+" ha esquivado el ataque.");
-        }
         if(orden[1].vida>0){
-            if(orden[1] instanceof Jugador){
-                clase="jugador";
-            }
-            else{
-                clase="enemigo";
-            }
-            if(!esquiva[1]){
-                danio=orden[1].ataque;
-                if(golpeCritico[1]){
-                    danio*=2;
-                    console.log("GOLPE CRÍTICO");
-                }
-                danio-=orden[0].defensa;
-                orden[0].vida-=danio;
-                
-                console.log("El "+clase+" ha recibido "+danio+" puntos de daño.");
-            }
-            else{
-                console.log("El "+clase+" ha esquivado el ataque.");
-            }
-            
+            orden[1].atacar(orden[0]);
         }
 
     }
-    static pruebaVelocidadEnfrentada(jugador,enemigo){
-        let tiradaJugador=Math.trunc(Math.random()*20)+1;
-        let tiradaEnemigo=Math.trunc(Math.random()*20)+1;
-        let res;
-
-        if((tiradaJugador+jugador.velocidad)>(tiradaEnemigo+enemigo.velocidad)){
-            res=[jugador,enemigo];
-            console.log("El jugador ataca primero.");
-        }
-        else{
-            res=[enemigo,jugador];
-            console.log("El enemigo ataca primero.");
-        } 
-        
-
-        return res;
-    }
+    
 
 }

@@ -1,18 +1,16 @@
 "use strict";
 
-export class Jugador{
+import { Personaje } from "./personaje.js";
+
+export class Jugador extends Personaje{
     constructor(lab){
+        super();
         this.laberinto=lab;
         this.vida=100;
         
         this.aguante=1;
         this.estamina=100+(10*this.aguante);
-        this.danio=1;
-        this.ataque=1;
-        this.defensa=1;
-        this.agilidad=20;
-        this.velocidad=1;
-        this.suerte=1;
+        
         this.nivel=1;
         this.exp=0;
 
@@ -94,14 +92,19 @@ export class Jugador{
         }
         console.log("direccion: "+this.direction);
     }
+    atacar(objetivo){
+        super.atacar(objetivo);
+        this.estamina-=2;
+    }
     //incrementa las variables de estadisticas del personaje al subir de nivel
     levelUp(){
         this.nivel++;
+        this.exp=0;
 
     }
     //incrementa la experiencia que gana el personaje
     ganarExp(xp){
-        let nextLv=nivel*5;
+        let nextLv=this.nivel*5;
         this.exp+=xp;
         if(this.exp>=nextLv){
             this.levelUp();
@@ -118,17 +121,5 @@ export class Jugador{
         console.log(this.direction);
     }
 
-    static pruebaGolpeCritico(suerte){
-        let tirada=Math.trunc(Math.random()*100)+1;
-        return tirada<=suerte;
-    }
-    static pruebaAgilidad(agilidad){
-        let tirada = Math.trunc(Math.random()*100)+1;
-        return tirada<=agilidad;
-    }
-    static pruebaVelocidad(velocidad, dificultad){
-        let tirada = Math.trunc(Math.random()*20)+1;
-        tirada+=velocidad;
-        return tirada>=dificultad;
-    }
+    
 }

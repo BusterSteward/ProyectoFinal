@@ -185,7 +185,7 @@ export class Laberinto{
         for(let i=0;i<this.tamanyo;i++){
             for(let j=0;j<this.tamanyo;j++){
                 if(this.getCelda(i,j).getEvento()==null){
-                    this.getCelda(i,j).setEvento(new Evento_Pasillo(1));
+                    this.getCelda(i,j).setEvento(new Evento_Enemigo(1));
                 }
             }
         }
