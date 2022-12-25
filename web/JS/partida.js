@@ -2,6 +2,7 @@
 
 import {Jugador} from "./jugador.js";
 import{Laberinto} from "./laberinto.js";
+import { Interfaz } from "./interfaz.js";
 
 export class Partida{
     #laberinto;
@@ -34,5 +35,8 @@ export class Partida{
     }
     gameOver(){
         console.log("La partida ha terminado");
+        Interfaz.borrarElemento("canvas");
+        Interfaz.borrarElementos("button");
+        document.querySelector("main").innerHTML="La partida ha terminado";
     }
 }

@@ -2,6 +2,32 @@
 
 export class Interfaz{
 
+    static borrarElemento(selector){
+        let elemento = document.querySelector(selector);
+
+        if(!elemento){
+            console.log("El elemento no existe");
+        }
+        else{
+            let padre=elemento.parentNode;
+            padre.removeChild(elemento);
+        }
+        
+    }
+    static borrarElementos(selector){
+        let elementos = document.querySelectorAll(selector);
+
+        if(!elementos){
+            console.log("El elemento no existe");
+        }
+        else{
+            elementos.forEach(elemento =>{
+                let padre= elemento.parentNode;
+                padre.removeChild(elemento);
+            })
+        }
+        
+    }
     //muestra u oculta los botones para moverse en función de los muros de la celda y
     //la direccion de la vista del jugador
     static refrescarBotones(partida){

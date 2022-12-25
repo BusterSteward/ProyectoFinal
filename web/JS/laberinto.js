@@ -182,6 +182,8 @@ export class Laberinto{
         return nuevasSalidas;
     }
     introducirEventos(){
+        let numEventos=(this.tamanyo*this.tamanyo)-2;
+        
         for(let i=0;i<this.tamanyo;i++){
             for(let j=0;j<this.tamanyo;j++){
                 if(this.getCelda(i,j).getEvento()==null){

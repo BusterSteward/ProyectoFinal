@@ -23,21 +23,48 @@ export class Enemigo extends Personaje{
         this.velocidad=Math.trunc(Math.random()*nivel);
         this.suerte=Math.trunc(Math.random()*nivel);
         this.recompensaExp=Math.trunc(Math.random()*nivel)+nivel;
+        this.recomensaOro=Math.trunc(Math.random()*nivel*((Math.trunc(Math.random()*4))+1))+1;
         //posibilidad de drop
         //array de objetos dropeables
     }
     estaVivo(){
         return this.vida>0;
     }
+    
     combate(jugador){
-        while(jugador.vida>0&&this.vida>0){
-            this.rondaDeAtaques(jugador);
+        let huida=false;
+        while(jugador.vida>0 && jugador.estamina>0 && this.vida>0 || huida){
+            huida = Personaje.accionDeCombate(jugador,this);
+            //this.rondaDeAtaques(jugador);
         }
-        return jugador.vida>0;
+        
+        if(huida) return 3;
+
+        if(jugador.vida>0 && jugador.estamina>0) 
+            return 1;
+        else 
+            return 2;
+
+
+    }
+    atacar(jugador){
+        super.atacar(jugador);
+        jugador.agilidadT=0;
+        jugador.defensaT=0;
     }
     rondaDeAtaques(jugador){
 
-        let orden=Personaje.pruebaVelocidadEnfrentada(jugador,this);
+        let prueba=Personaje.pruebaVelocidadEnfrentada(jugador,this);
+        let orden;
+        
+        if(prueba){
+            orden=[jugador,this];
+            console.log("El jugador ataca primero");
+        }
+        else{
+            orden=[this,jugador];
+            console.log("El enemigo ataca primero");
+        }
         
         orden[0].atacar(orden[1]);
 

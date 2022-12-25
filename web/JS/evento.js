@@ -38,14 +38,20 @@ export class Evento_Enemigo extends Evento{
         else{
             console.log("Te encuentras con un enemigo delante de ti, preparate para el combate.");
             let resultado = this.enemigo.combate(jugador);
-            this.resuelto=true;
-            if(resultado){
+            
+            if(resultado==1){
                 console.log("Has derrotado a tu enemigo.");
                 jugador.ganarExp(this.enemigo.recompensaExp);
+                jugador.ganarOro(this.enemigo.recomensaOro);
+                this.resuelto=true;
             }
-            else{
+            else if(resultado==2){
                 console.log("Te han derrotado.");
                 partida.gameOver();
+            }
+            else{
+                console.log("Has huido por donde has venido.");
+                jugador.mover(jugador.getDireccionContraria());
             }
         }
     }

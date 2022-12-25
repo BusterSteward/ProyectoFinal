@@ -38,5 +38,6 @@ document.getElementById("girarse").addEventListener("click",()=>{
 //creo la partida
 partida = new Partida();
 
+
 //oculto los botones que el jugador no puede ver desde su posicion inicial
 Interfaz.refrescarBotones(partida);
