@@ -1,3 +1,45 @@
 .ocultar{
     display: none;
 }
+html{
+    background-color: black;
+    padding: auto;
+}/*
+body{
+    background-image: url("../IMAGENES/PortadaSmaller.gif");
+    background-repeat: no-repeat;
+    background-position:center;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    height: 100vh;
+    margin:0;
+    max-width: 500px;
+    overflow: hidden;
+}
+  
+ 
+@media screen and (min-width: 400px) {
+    body {
+        background-image: url("../IMAGENES/PortadaSmall.gif");
+    }
+  }
+@media screen and (min-width: 500px) {
+    body {
+        background-image: url("../IMAGENES/PortadaSmall.gif");
+        margin: auto;
+    }
+  }
+  @media screen and (min-width: 700px) {
+    body {
+        background-image: url("../IMAGENES/Portada.gif");
+        max-width: inherit;
+        margin:0;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    body {
+        background-image: url("../IMAGENES/PortadaBig.gif");
+    }
+  }
+*/

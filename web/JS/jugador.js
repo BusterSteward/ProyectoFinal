@@ -1,6 +1,7 @@
 "use strict";
 
 import { Personaje } from "./personaje.js";
+import { Inventario } from "./inventario.js";
 import { partida } from "./main.js";
 
 export class Jugador extends Personaje{
@@ -22,6 +23,8 @@ export class Jugador extends Personaje{
             "y":-1
         }
         this.direction=null;
+        this.inventario=new Inventario(this);
+        
     }
     setLab(lab){
         this.laberinto=lab;

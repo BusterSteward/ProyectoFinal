@@ -9,7 +9,7 @@ export class Interfaz{
             console.log("El elemento no existe");
         }
         else{
-            let padre=elemento.parentNode;
+            let padre = elemento.parentNode;
             padre.removeChild(elemento);
         }
         
@@ -22,9 +22,9 @@ export class Interfaz{
         }
         else{
             elementos.forEach(elemento =>{
-                let padre= elemento.parentNode;
+                let padre = elemento.parentNode;
                 padre.removeChild(elemento);
-            })
+            });
         }
         
     }

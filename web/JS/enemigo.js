@@ -33,7 +33,7 @@ export class Enemigo extends Personaje{
     
     combate(jugador){
         let huida=false;
-        while(jugador.vida>0 && jugador.estamina>0 && this.vida>0 || huida){
+        while(jugador.vida>0 && jugador.estamina>0 && this.vida>0 && !huida){
             huida = Personaje.accionDeCombate(jugador,this);
             //this.rondaDeAtaques(jugador);
         }

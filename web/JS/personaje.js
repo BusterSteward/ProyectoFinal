@@ -58,7 +58,8 @@ export class Personaje{
     }
     static accionDeCombate(jugador,enemigo){
         let accion;
-        accion=prompt(   `1-Ataque normal
+        accion=prompt(   `Elige una acción:
+                        1-Ataque normal
                         2-Ataque fuerte
                         3-Rodar
                         4-Bloquear
@@ -85,13 +86,11 @@ export class Personaje{
                 break;
             case "4":
                 jugador.estamina-=1;
-                jugador.defensaT=Math.trunc(Math.random*(jugador.defensa/2))+jugador.defensa/2;
+                jugador.defensaT=Math.trunc(Math.random()*(jugador.defensa/2))+(jugador.defensa/2)+1;
                 enemigo.atacar(jugador);
                 break;
             case "5":
-                jugador.usarObjeto();
-                if(enemigo.estaVivo())
-                    enemigo.atacar(jugador);
+                jugador.usarObjeto(enemigo);
                 break;
             case "6":
                 let huida = Personaje.pruebaVelocidadEnfrentada(jugador,enemigo);
