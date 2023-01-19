@@ -70,6 +70,7 @@ export class Personaje{
                 enemigo.rondaDeAtaques(jugador);
                 break;
             case "2":
+                
                 jugador.estamina-=3;
                 jugador.ataqueT=jugador.ataque;
                 jugador.velodidadT=-10;
@@ -78,7 +79,8 @@ export class Personaje{
                 jugador.velodidadT=0;
                 break;
             case "3":
-                jugador.estamina-=3;
+                let multPeso=jugador.penalizacionPeso();
+                jugador.estamina-=2*multPeso;
                 jugador.agilidadT=jugador.agilidad;
                 enemigo.ataqueT=Math.trunc(Math.random()*enemigo.ataque)+1;
                 enemigo.atacar(jugador);
