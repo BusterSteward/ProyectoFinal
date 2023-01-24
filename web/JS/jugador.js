@@ -26,6 +26,9 @@ export class Jugador extends Personaje{
         this.inventario=new Inventario(this);
         
     }
+    penalizacionPeso(){
+        return this.inventario.calcularMultiplicadorDePeso();
+    }
     setLab(lab){
         this.laberinto=lab;
     }
@@ -106,7 +109,8 @@ export class Jugador extends Personaje{
     }
     atacar(objetivo){
         super.atacar(objetivo);
-        this.estamina-=2;
+        let multPeso=this.inventario.calcularMultiplicadorDePeso();
+        this.estamina-=2*multPeso;
     }
     //incrementa las variables de estadisticas del personaje al subir de nivel y restablece la estamina y salud
     levelUp(){
