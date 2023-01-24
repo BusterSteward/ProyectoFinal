@@ -3,6 +3,7 @@
 import { Personaje } from "./personaje.js";
 
 export class Enemigo extends Personaje{
+    
     constructor(nivel,boss){
         super();
         let limiteAgilidad=25;
@@ -10,6 +11,7 @@ export class Enemigo extends Personaje{
             nivel+=3;
             limiteAgilidad=40;
         }
+        this.nivel=nivel;
         this.vida=Math.trunc(Math.random()*(nivel*5));
         if(this.vida<(nivel*5))
             this.vida=nivel*5;
@@ -24,8 +26,15 @@ export class Enemigo extends Personaje{
         this.suerte=Math.trunc(Math.random()*nivel);
         this.recompensaExp=Math.trunc(Math.random()*nivel)+nivel;
         this.recomensaOro=Math.trunc(Math.random()*nivel*((Math.trunc(Math.random()*4))+1))+1;
+
+        this.nextAccion=null;
         //posibilidad de drop
         //array de objetos dropeables
+    }
+    elegirAccion(){
+        const Acciones=["AtaqueFuerte","AtaqueDebil"];
+        const index=Math.trunc(Math.random()*Acciones.length);
+        this.nextAccion=Acciones[index];
     }
     estaVivo(){
         return this.vida>0;
@@ -34,6 +43,8 @@ export class Enemigo extends Personaje{
     combate(jugador){
         let huida=false;
         while(jugador.vida>0 && jugador.estamina>0 && this.vida>0 && !huida){
+            this.elegirAccion();
+
             huida = Personaje.accionDeCombate(jugador,this);
             //this.rondaDeAtaques(jugador);
         }
@@ -48,7 +59,9 @@ export class Enemigo extends Personaje{
 
     }
     atacar(jugador){
+        
         super.atacar(jugador);
+        this.ataqueT=0;
         jugador.agilidadT=0;
         jugador.defensaT=0;
     }
