@@ -75,6 +75,7 @@ export class Personaje{
                 enemigo.rondaDeAtaques(jugador);
                 jugador.ataqueT=0;
                 jugador.velodidadT=0;
+                enemigo.ataqueT=0;
                 break;
             case "3":
                 let multPeso=jugador.penalizacionPeso();
@@ -86,6 +87,7 @@ export class Personaje{
             case "4":
                 jugador.defensaT=Math.trunc(Math.random()*(jugador.defensa/2))+(jugador.defensa/2)+1;
                 enemigo.atacar(jugador);
+                enemigo.ataqueT=0;
                 break;
             case "5":
                 jugador.usarObjeto(enemigo);
@@ -96,8 +98,10 @@ export class Personaje{
                     return true;
                 }
                 else{
-                    console.log("No has conseguido huir")
+                    console.log("No has conseguido huir");
+                    enemigo.ataqueT+=Math.trunc(Math.random()*enemigo.nivel);
                     enemigo.atacar(jugador);
+                    enemigo.ataqueT=0;
                 }
                 break;
         }
