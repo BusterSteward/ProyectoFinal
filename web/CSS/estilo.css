@@ -4,6 +4,7 @@
 html{
     background-color: black;
     padding: auto;
+    min-width: 480px;
 }/*
 body{
     background-image: url("../IMAGENES/PortadaSmaller.gif");

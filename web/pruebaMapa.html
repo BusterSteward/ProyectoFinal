@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/estilo.css">
+    <link rel="stylesheet" href="./CSS/mapa.css">
+    <title>Infinite dungeon - prueba</title>
+    
+</head>
+<body>
+    <main>
+        <div class="diario">
+            <section class="botones">
+                <div id="lapiz" class="boton-diario selected">
+                    <img id="imgLapiz" src="./IMAGENES/black_lapiz.png" alt="seleccionar lapiz/cambiar color">
+                </div>
+                <div id="goma" class="boton-diario">
+                    <img src="./IMAGENES/goma.png" alt="seleccionar goma">
+                </div>
+                <div id="limpiar" class="boton-diario">
+                    <img src="./IMAGENES/limpiar.png" alt="borrar todo">
+                </div>
+            </section>
+            <section class="mapa">
+                <canvas>
+
+                </canvas>
+            </section>
+            <section class="paginacion">
+                <p><i id="prev" class="fa-solid fa-backward"></i><span id="npagina">1</span><i id="next" class="fa-solid fa-forward"></i></p>
+            </section>
+            
+        </div>
+        
+    </main>
+    
+</body>
+<script type="module" src="./JS/complementos/mapa.js"></script>
+<script src="https://kit.fontawesome.com/7d710ebe5a.js" crossorigin="anonymous"></script>
+</html>

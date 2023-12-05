@@ -1,0 +1,143 @@
+.diario{
+    width: 80%;
+    margin: auto;
+    background-image: url("../IMAGENES/mapa.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+}
+.botones{
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    left: 40px;
+    top: 210px;
+    width: 50px;
+    float: left;
+}
+.boton-diario{
+    width: 30px;
+    border: 2px solid black;
+    border-radius: 20%;
+    margin: .5em;
+    padding: 3px;
+}
+.boton-diario img{
+    width: 30px;
+}
+.mapa{
+    position: relative;
+    float:right;
+    display: block;
+    top: 240px;
+    left:35px;
+    width: 85%;
+}
+canvas{
+    border:solid black 1px;
+    width: 75%;
+    height: 140px;
+}
+.paginacion{
+    position: relative;
+    top: 210px;
+    clear: both;
+    width: fit-content;
+    margin: auto;
+}
+#npagina{
+    margin:0 .5em;
+}
+#prev:hover,#next:hover,.boton-diario:hover{
+    cursor: pointer;
+}
+.selected{
+    border: 2px solid yellow;
+}/*
+@media screen and (min-width: 510px) {
+    
+    .mapa{
+        top: 240px;
+        
+    }
+    
+  }*/
+  @media screen and (min-width: 610px) {
+    
+    canvas{
+        height: 190px;
+    }
+    
+    .mapa{
+        top:210px;
+        left:25px;
+    }
+   
+  }
+@media screen and (min-width: 710px) {
+    canvas{
+        height: 200px;
+    }
+    .botones{
+        left:55px;
+       /* top:80px;*/
+    }
+    .mapa{
+        top:200px;
+        
+    }
+    
+  }
+  @media screen and (min-width: 830px) {
+    canvas{
+        height: 250px;
+    }
+    
+    .mapa{
+        top:180px;
+        left:10;
+    }
+    .paginacion{
+        top:190px;
+    }
+  }
+  
+  @media screen and (min-width: 1000px) {
+    canvas{
+        width: 83%;
+        height: 300px;
+    }
+    .botones{
+        left:70px;
+        top:95px;
+    }
+    .mapa{
+        top:160px;
+        left:5px;
+    }
+    .paginacion{
+        top:170px;
+    }
+    
+  }
+  @media screen and (min-width: 1200px){
+    
+    canvas{
+        width: 64%;
+        height: 320px;
+    }
+    .botones{
+        left:180px;
+    }
+    .mapa{
+        top:150px;
+        left:90px;
+    }
+    .paginacion{
+        top:160px;
+        
+        margin: auto;
+    }
+  }
