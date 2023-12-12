@@ -1,0 +1,13 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.icono{
+    margin: 1em;
+    cursor: pointer;
+}
+*{
+    font-size: larger;
+    text-align: center;
+}

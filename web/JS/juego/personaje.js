@@ -51,7 +51,8 @@ export class Personaje{
         return tirada>=dificultad;
     }
     static pruebaVelocidadEnfrentada(jugador,enemigo){
-        let tiradaJugador=Math.trunc(Math.random()*20)+1;
+        let multPeso=jugador.penalizacionPeso();
+        let tiradaJugador=Math.trunc(Math.random()*20)+1 - multPeso;
         let tiradaEnemigo=Math.trunc(Math.random()*20)+1;
 
         return (tiradaJugador+jugador.velocidad+jugador.velodidadT)>(tiradaEnemigo+enemigo.velocidad+enemigo.velodidadT);
@@ -63,8 +64,7 @@ export class Personaje{
                         2-Ataque fuerte
                         3-Rodar
                         4-Bloquear
-                        5-Usar objeto
-                        6-Huir`);
+                        5-Huir`);
         switch(accion){
             case "1":
                 enemigo.rondaDeAtaques(jugador);
@@ -79,7 +79,7 @@ export class Personaje{
                 break;
             case "3":
                 let multPeso=jugador.penalizacionPeso();
-                jugador.agilidadT=jugador.agilidad;
+                jugador.agilidadT=jugador.agilidad - multPeso;
                 enemigo.ataqueT=Math.trunc(Math.random()*enemigo.ataque)+1;
                 enemigo.atacar(jugador);
                 enemigo.ataqueT=0;
@@ -90,9 +90,6 @@ export class Personaje{
                 enemigo.ataqueT=0;
                 break;
             case "5":
-                jugador.usarObjeto(enemigo);
-                break;
-            case "6":
                 let huida = Personaje.pruebaVelocidadEnfrentada(jugador,enemigo);
                 if(huida){
                     return true;

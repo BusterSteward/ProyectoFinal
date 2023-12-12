@@ -1,0 +1,19 @@
+Cómo desplegar el proyecto:
+Paso 1: Crear la base de datos local e importar el script de base de datos
+Paso 2: arrancar servidor 
+	Nos situamos en un terminal en la carpeta servidor del proyecto y ejecutamos el comando node servidor.js
+Paso 3: Arrancamos la app de react
+	Nos situamos en la carpeta infinite_dungeon en otro terminal y ejecutamos npm start
+
+Vistas de prueba:
+	Como al principio no tenía pensado usar react tengo algunas vistas que todavia no están hechas en la app
+	pero las tengo preparadas para probar la funcionalidad del juego antes de pasarlas a react
+
+	-Vista prueba.html: contiene una etiqueta script donde se ejecuta la funcionalidad del videojuego y un
+	 canvas donde se visualiza de forma simple lo que se trata de lograr con cada funcionalidad. Al pasar esta
+	vista a react la intención es que no haya un canvas sino que se vaya actualizando lo que se ve en pantalla
+	segun la celda del laberinto en el que estes. 
+
+	-Vista pruebaMapa.html: contiene un canvas en el que puedes pintar lo que quieras y se puede seleccionar 
+	el color del pincel (La intención es que el jugador lo utilice para crear su propio mapa del laberinto
+	aleatorio y así tratar de orientarse).

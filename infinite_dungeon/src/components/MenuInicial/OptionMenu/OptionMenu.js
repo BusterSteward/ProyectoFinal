@@ -1,10 +1,7 @@
-import { useContext } from "react";
-import AppContext from '../../../AppContext';
 import './OptionMenu.css';
 
-function OptionMenu({clase, text}) {
+function OptionMenu({clase, text, handleClick}) {
 
-    const context = useContext(AppContext);
 
     /*
     paginas que se podran visualizar:
@@ -25,37 +22,9 @@ function OptionMenu({clase, text}) {
     GuardarPartida (Solo logeado)
     CargarPartida (Solo logeado)
   */
-    const handleClick = () => {
-        let nuevaPagina
-        switch(text) {
-
-            case "Iniciar partida":
-                nuevaPagina = "iniciarPartida";
-                break;
-            case "Cargar partida":
-                nuevaPagina = "cargarPartida";
-                break;
-            case "Cerrar sesión":
-                nuevaPagina = "inicio";
-                break;
-            case "Ver puntuaciones":
-                nuevaPagina = "ranking";
-            case "login":
-                nuevaPagina = "login";
-                break
-            case "registro":
-                nuevaPagina = "registro";
-                break
-           
-            default:
-                nuevaPagina = "cambiado"
-                break;
-        }
-        context.setPagina(nuevaPagina);
-    }
-
+   
     return (
-        <button className={clase+" OptionMenu"} onClick={handleClick}>{text}</button>
+        <button className={clase} onClick={handleClick}>{text}</button>
     );
 
 }

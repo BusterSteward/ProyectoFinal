@@ -12,26 +12,18 @@ export class Objeto{
 
 }
 export class Objeto_Arma extends Objeto{
-    constructor(user,nombre,level,tipo,precio,max,min,peso,durabilidad){
+    constructor(user,nombre,level,tipo,precio,ataque,peso){
         super(user,nombre,level,tipo,precio);
-        this.maxAttack=max;
-        this.minAttack=min;
+        this.ataque=ataque;
         this.peso=peso;
-        this.durabilidad=durabilidad;
     }
     
 }
 export class Objeto_Armadura extends Objeto{
-    constructor(user,nombre,level,tipo,precio,defensa,peso,durabilidad){
+    constructor(user,nombre,level,tipo,precio,defensa,peso){
         super(user,nombre,level,tipo,precio);
         this.defensa=defensa;
         this.peso=peso;
-        this.durabilidad=durabilidad;
-    }
-}
-export class Objeto_Usable extends Objeto{
-    constructor(user,nombre,level,tipo,precio,usos){
-        super(user,nombre,level,tipo,precio);
-        this.usos=usos;
+       
     }
 }
