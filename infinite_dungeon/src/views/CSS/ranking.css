@@ -1,0 +1,41 @@
+.volver{
+    position: fixed;
+    top:12px;
+    left:20px;
+    cursor:pointer;
+    font-size: 20px;
+}
+
+button {
+    display: block;
+    margin: 0 30% 0 70%;
+    font-size: 14px;
+    padding: 5px;
+    width: max-content;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgb(87, 87, 87);
+}
+.NoActivo {
+    background-color: black;
+    border:yellow 1px solid;
+    color:yellow;
+}
+.Activo {
+    background-color: yellow;
+    color:black;
+    border:black solid 1px;
+}
+.fecha {
+    min-width: 93px;
+}
+h2{
+    margin-top: 23px;
+    margin-bottom: 5px;
+}
+@media screen and (max-width: 600px){
+    button {
+        margin: 0 40% 0 60%;
+    }
+}

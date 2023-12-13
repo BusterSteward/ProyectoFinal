@@ -13,16 +13,20 @@ import Combate from './views/Combate';
 import Dungeon from './views/Dungeon';
 import Inventario from './views/Inventario';
 import SubirNivel from './views/SubirNivel';
+import FondoPantalla from './components/FondoPantalla/fondoPantalla.js';
 import Cookies from "universal-cookie";
 
 const audios = require.context("/src/assets/audios", true)
+const imagenes = require.context("/src/assets/images", true)
 
 function App() {
   const [pagina, setPagina] = useState("inicio");
   const [logged, setLogged] = useState(false);
   const [audio, setAudio] = useState("explorando");
+  const [imagen, setImagen] = useState("portada");
 
   const music = "./" + audio + ".wav";
+  const portada = "./" + imagen + ".png";
 
   const audioRef = useRef(null);
 
@@ -122,6 +126,7 @@ function App() {
   }
   return (
     <div className="App">
+      <FondoPantalla></FondoPantalla>
       <audio ref={audioRef} src={audios(music)} autoPlay loop/>
       <AppContext.Provider value={context}>
         {nodo}

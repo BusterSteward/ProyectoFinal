@@ -51,7 +51,7 @@ function Login() {
         <div className="login">
             
             <form onSubmit={Logearse}>
-            <FontAwesomeIcon icon={faArrowRotateLeft} className="icono" onClick={backToMenu}/><h2>Infinite dungeon</h2>
+            <FontAwesomeIcon icon={faArrowRotateLeft} className="volver" onClick={backToMenu}/><h2>Infinite dungeon</h2>
                 <label>Email:<input id="email" type="email" name="email" /></label>
                 <label> Password:<input id="password" type="password" name="password" /></label>
                 <input type="submit" value="Login"/>

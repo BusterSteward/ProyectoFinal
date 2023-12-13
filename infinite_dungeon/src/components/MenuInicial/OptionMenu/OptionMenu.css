@@ -6,6 +6,8 @@
   width: 30%;
   min-width: fit-content;
   padding: 5px;
+  font-size: xx-large;
+  margin:0;
     
     animation-name: parpadeo;
     animation-duration: 1s;
@@ -49,4 +51,6 @@
   width: 30%;
   min-width: fit-content;
   padding: 5px;
+  font-size: xx-large;
+  margin:0
 }

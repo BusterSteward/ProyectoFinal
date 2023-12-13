@@ -47,6 +47,33 @@ Usuarios.init({
 }
 )
 
+class Puntuaciones extends Model{}
+
+Puntuaciones.init({
+    idpuntuaciones: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    fecha: DataTypes.DATE,
+    puntos: DataTypes.INTEGER,
+    salas: DataTypes.INTEGER,
+    usuarios_email: {
+        type: DataTypes.STRING,
+        references: {
+            model: Usuarios,
+            key: 'email'
+        }
+    }
+},
+{
+    sequelize: conexion,
+    modelName: 'Puntuaciones'
+})
+
+Usuarios.hasMany(Puntuaciones, { foreignKey: 'usuarios_email', sourceKey: 'email' });
+Puntuaciones.belongsTo(Usuarios, { foreignKey: 'usuarios_email', targetKey: 'email' });
+
 //Arrancamos la API
 const app = express();
 app.use(express.json());
@@ -59,6 +86,7 @@ app.get('/prueba', (req, res) => {
 
 app.get('/usuarios', async (req, res) => {
     await Usuarios.sync()
+
     const usuario = await Usuarios.findOne({
         where: {
             email: req.query.email
@@ -68,7 +96,7 @@ app.get('/usuarios', async (req, res) => {
         res.status(404).json({
             ok: false,
             status: 404,
-            msg: "Usuario no encontrado"
+            msg: "Usuario no encontrado",
         })
     
     }
@@ -85,6 +113,7 @@ app.get('/usuarios', async (req, res) => {
                 ok: true,
                 status: 200,
                 msg: "TODO OK",
+                datos: usuario
             })
 
         }
@@ -124,8 +153,39 @@ app.post('/usuarios', async (req, res) => {
     }
 
 })
-app.get('/puntuaciones', (req, res) => {
-
+app.get('/puntuaciones', async (req, res) => {
+    await Puntuaciones.sync()
+    try{
+        const numPagina = parseInt(req.query.numPagina);
+        const nRegistros = parseInt(req.query.nRegistros);
+        const email = req.query.email;
+        let miwhere = email ? {usuarios_email: email} : {};
+       
+        console.log("npagina",numPagina,"nregistros", nRegistros,"email",email)
+        const puntuaciones = await Puntuaciones.findAndCountAll({
+            where: miwhere,
+            offset: (numPagina - 1) * nRegistros,
+            limit: nRegistros,
+            include: [{
+                model: Usuarios,
+                attributes: ['email', 'nombre']
+            }]
+        })
+        res.status(200).json({
+            ok: true,
+            status: 200,
+            datos: puntuaciones
+        })
+    }
+    catch(err){
+        console.error(err)
+        
+        res.status(500).json({
+            ok: false,
+            status: 500,
+            msg: "Hubo un problema con el servidor",
+        })
+    }
 })
 
 app.post('/puntuaciones', (req, res) => {

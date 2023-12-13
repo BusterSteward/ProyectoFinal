@@ -1,0 +1,14 @@
+.fondoPantalla{
+    position: fixed;  /* O puedes usar "absolute" según tus necesidades */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;  /* Asegura que esté detrás de otros elementos */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+.prueba {
+    background-image: url("../../assets/images/menu.jpg");
+}
